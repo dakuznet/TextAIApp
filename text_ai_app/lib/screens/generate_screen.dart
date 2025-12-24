@@ -15,17 +15,16 @@ class _GenerateScreenState extends State<GenerateScreen> {
   bool _isLoading = false;
 
   final _examplePrompts = [
-    'Write a short story about a robot learning to paint',
-    'Explain quantum computing in simple terms',
-    'Write a poem about the changing seasons',
-    'Create a business proposal for a sustainable startup',
+    'Напиши небольшую историю о том, как робот учится рисовать',
+    'Придумай несколько предложений о яблоке',
+    'Кратко расскажи про пользу мёда',
   ];
 
   Future<void> _generateText() async {
     if (_promptController.text.isEmpty) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Please enter a prompt')));
+      ).showSnackBar(const SnackBar(content: Text('Введите запрос')));
       return;
     }
 
@@ -38,7 +37,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
     } catch (e) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Generation failed: $e')));
+      ).showSnackBar(SnackBar(content: Text('Ошибка генерации: $e')));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -47,7 +46,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Text Generation')),
+      appBar: AppBar(title: const Text('Генерация текста')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -58,7 +57,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Example Prompts:',
+                      'Примеры запросов:',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -82,9 +81,9 @@ class _GenerateScreenState extends State<GenerateScreen> {
                       controller: _promptController,
                       maxLines: 3,
                       decoration: const InputDecoration(
-                        labelText: 'Your prompt',
+                        labelText: 'Ваш запрос',
                         border: OutlineInputBorder(),
-                        hintText: 'Enter your prompt here...',
+                        hintText: 'Введите ваш запрос...',
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -97,7 +96,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                             ? const CircularProgressIndicator(
                                 color: Colors.white,
                               )
-                            : const Text('Generate Text'),
+                            : const Text('Сгенерировать текст'),
                       ),
                     ),
                     const SizedBox(height: 30),
@@ -109,7 +108,7 @@ class _GenerateScreenState extends State<GenerateScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Generated Text:',
+                                'Сгенерированный текст:',
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,

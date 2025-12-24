@@ -80,15 +80,15 @@ class AppwriteService extends ChangeNotifier {
     }
   }
 
-  Future<String> translateText(String text, String targetLanguage) async {
+  Future<String> translateText(String text) async {
     try {
       final execution = await functions.createExecution(
         functionId: '694b1c4d001127582332',
-        body: json.encode({'text': text, 'target_language': targetLanguage}),
+        body: json.encode({'source': text}),
       );
 
       final response = json.decode(execution.responseBody);
-      return response['translated_text'] ?? 'Error in translation';
+      return response['output'] ?? 'Ошибка при переводе текста...';
     } catch (e) {
       rethrow;
     }
@@ -102,7 +102,7 @@ class AppwriteService extends ChangeNotifier {
       );
 
       final response = json.decode(execution.responseBody);
-      return response['generated_text'] ?? 'Error in generation';
+      return response['completion'] ?? 'Ошибка при генерации текста...';
     } catch (e) {
       rethrow;
     }

@@ -23,7 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (_passwordController.text != _confirmPasswordController.text) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Passwords do not match')));
+      ).showSnackBar(const SnackBar(content: Text('Пароли не совпадают')));
       return;
     }
 
@@ -36,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Registration failed: ${e.toString()}')),
+        SnackBar(content: Text('Ошибка при регистрации: ${e.toString()}')),
       );
     } finally {
       setState(() => _isLoading = false);
@@ -46,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
+      appBar: AppBar(title: const Text('Регистрация')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -56,13 +56,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 controller: _nameController,
                 decoration: const InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'Имя',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.person),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your name';
+                    return 'Введите ваше Имя';
                   }
                   return null;
                 },
@@ -71,17 +71,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
+                  labelText: 'Электронная почта',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.email),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter email';
+                    return 'Введите вашу электронную почту';
                   }
                   if (!value.contains('@')) {
-                    return 'Please enter valid email';
+                    return 'Введите вашу электронную почту';
                   }
                   return null;
                 },
@@ -90,17 +90,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Пароль',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.lock),
                 ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter password';
+                    return 'Введите пароль';
                   }
                   if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
+                    return 'Длина пароль должна быть не меньше 6 символов';
                   }
                   return null;
                 },
@@ -109,14 +109,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
               TextFormField(
                 controller: _confirmPasswordController,
                 decoration: const InputDecoration(
-                  labelText: 'Confirm Password',
+                  labelText: 'Подтвердите пароль',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.lock),
                 ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please confirm password';
+                    return 'Подтвердите пароль';
                   }
                   return null;
                 },
@@ -129,13 +129,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onPressed: _isLoading ? null : _register,
                   child: _isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text('Register'),
+                      : const Text('Зарегистрироваться'),
                 ),
               ),
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Already have an account? Login'),
+                child: const Text('Уже есть аккаунт? Войти'),
               ),
             ],
           ),

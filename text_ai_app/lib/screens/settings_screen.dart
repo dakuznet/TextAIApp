@@ -10,7 +10,7 @@ class SettingsScreen extends StatelessWidget {
     final user = context.read<AppwriteService>().currentUser;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: const Text('Настройки')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -23,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Account Information',
+                      'Информация об аккаунте',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -32,23 +32,23 @@ class SettingsScreen extends StatelessWidget {
                     const SizedBox(height: 10),
                     ListTile(
                       leading: const Icon(Icons.person),
-                      title: const Text('Name'),
-                      subtitle: Text(user?.name ?? 'Not available'),
+                      title: const Text('Имя'),
+                      subtitle: Text(user?.name ?? 'Не указано'),
                     ),
                     ListTile(
                       leading: const Icon(Icons.email),
-                      title: const Text('Email'),
-                      subtitle: Text(user?.email ?? 'Not available'),
+                      title: const Text('Электронная почта'),
+                      subtitle: Text(user?.email ?? 'Не указано'),
                     ),
                     ListTile(
                       leading: const Icon(Icons.calendar_today),
-                      title: const Text('Registered'),
+                      title: const Text('Дата регистрации:'),
                       subtitle: Text(
                         user?.registration != null
                             ? DateTime.parse(
                                 user!.registration,
                               ).toLocal().toString().split(' ')[0]
-                            : 'Not available',
+                            : 'Не указано',
                       ),
                     ),
                   ],
@@ -65,7 +65,7 @@ class SettingsScreen extends StatelessWidget {
                     await context.read<AppwriteService>().logout();
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Logout failed: $e')),
+                      SnackBar(content: Text('Ошибка при попытке выхода: $e')),
                     );
                   }
                 },
@@ -73,7 +73,7 @@ class SettingsScreen extends StatelessWidget {
                   backgroundColor: Colors.red,
                   foregroundColor: Colors.white,
                 ),
-                child: const Text('Logout'),
+                child: const Text('Выйти'),
               ),
             ),
           ],

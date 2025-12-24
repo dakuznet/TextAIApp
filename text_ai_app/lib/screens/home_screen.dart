@@ -33,10 +33,10 @@ class HomeScreen extends StatelessWidget {
               child: ListTile(
                 leading: const Icon(Icons.translate, size: 40),
                 title: const Text(
-                  'Text Translation',
+                  'Перевод текста',
                   style: TextStyle(fontSize: 18),
                 ),
-                subtitle: const Text('Translate text between languages'),
+                subtitle: const Text('Переведите ваш текст на русском языке на английский'),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -53,10 +53,10 @@ class HomeScreen extends StatelessWidget {
               child: ListTile(
                 leading: const Icon(Icons.auto_awesome, size: 40),
                 title: const Text(
-                  'Text Generation',
+                  'Генерация текста',
                   style: TextStyle(fontSize: 18),
                 ),
-                subtitle: const Text('Generate text using AI'),
+                subtitle: const Text('Сгенерируйте текст с помощью AI'),
                 onTap: () {
                   Navigator.push(
                     context,

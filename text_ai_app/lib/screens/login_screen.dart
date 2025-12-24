@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } catch (e) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text('Login failed: ${e.toString()}')));
+      ).showSnackBar(SnackBar(content: Text('Ошибка входа: ${e.toString()}')));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      appBar: AppBar(title: const Text('Вход')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -48,17 +48,17 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
+                  labelText: 'Электронная почта',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.email),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter email';
+                    return 'Введите вашу электронную почту';
                   }
                   if (!value.contains('@')) {
-                    return 'Please enter valid email';
+                    return 'Введите вашу электронную почту';
                   }
                   return null;
                 },
@@ -67,17 +67,17 @@ class _LoginScreenState extends State<LoginScreen> {
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Пароль',
                   border: OutlineInputBorder(),
                   prefixIcon: Icon(Icons.lock),
                 ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter password';
+                    return 'Введите пароль';
                   }
                   if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
+                    return 'Длина пароль должна быть не меньше 6 символов';
                   }
                   return null;
                 },
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: _isLoading ? null : _login,
                   child: _isLoading
                       ? const CircularProgressIndicator(color: Colors.white)
-                      : const Text('Login'),
+                      : const Text('Войти'),
                 ),
               ),
               const SizedBox(height: 20),
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   );
                 },
-                child: const Text('Don\'t have an account? Register'),
+                child: const Text('Нет аккаунта? Зарегистрироваться'),
               ),
             ],
           ),
